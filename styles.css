@@ -1,11 +1,12 @@
 div {
     display: inline-block;
+    width: 100%;
 }
 img {
     width: 250px;
     height: 150px;
 }
-.zoom > img {
+#zoom > img {
     width: 400px;
     height: 250px;
 }

@@ -1,19 +1,23 @@
 $('img').click(function () {
     var zoomable = $(this);
-    var clickedElemHTML = zoomable[0].outerHTML;
-    if ($('.zoom').length) {
-        var zoomableElemntHTML = $('.zoom').children()[0].outerHTML;
-        if (clickedElemHTML === zoomableElemntHTML) {
-            $('.zoom').hide(500, function () {
-                $('.zoom').remove();
+    var imgURL = $(this).attr('src');
+    var zoom = '<div id="zoom"><img src="' + imgURL + '"></div>';
+    var zoomURL = $('#zoom').find('img').attr('src');
+
+    if ($('#zoom').length) {
+        if (imgURL === zoomURL) {
+            $('#zoom').hide(500, function () {
+                $('#zoom').detach();
             });
         } else {
-            $('.zoom').hide(500, function () {
-                $('.zoom').remove();
-                zoomable.parent().after('<div class="zoom">' + clickedElemHTML + '</div>').slideDown(400);
+            $('#zoom').hide(500, function () {
+                $('#zoom').detach();
+                zoomable.parent().after(zoom);
+                $('#zoom').hide().slideDown(1000);
             });
         }
     } else {
-        zoomable.parent().after('<div class="zoom">' + clickedElemHTML + '</div>').slideDown(400);
+        zoomable.parent().after(zoom);
+        $('#zoom').hide().slideDown(1000);
     }
 });
